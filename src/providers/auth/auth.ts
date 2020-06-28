@@ -9,7 +9,7 @@ export class AuthProvider {
  
   private ifSignedIn = () => { };
   private ifSignedOut = () => { };
-  private _currentUser: {} = null;
+  private _currentUser: any = null;
  
   constructor(private http: HttpClient, private storage: Storage, private toastr: ToastController) { }
  
