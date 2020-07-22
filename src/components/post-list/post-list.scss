@@ -1,0 +1,38 @@
+post-list {
+    div.buttons {
+      ion-col {
+        background: #EDEDED;
+   
+        button {
+          ion-icon {
+            color: #666666;
+   
+            &.active {
+              color: #5858CC
+            }
+          }
+        }
+      }
+    }
+   
+    div.only-images {
+      ion-col {        
+        div.image-container {
+          width: 100%;
+          
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+   
+    div.details {
+      ion-item {
+        
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }

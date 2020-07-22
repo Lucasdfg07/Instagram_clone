@@ -1,0 +1,55 @@
+<div class="buttons" *ngIf="showToolbar">
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col>
+        <button ion-button block clear icon-only (click)="changeList('group')">
+          <ion-icon name="apps" [ngClass]="{ active: (currentList == 'group') }"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button block clear icon-only (click)="changeList('details')">
+          <ion-icon name="expand" [ngClass]="{ active: (currentList == 'details') }"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+ 
+<div class="only-images" *ngIf="currentList == 'group'">
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-6 align-self-center *ngFor="let post of posts">
+        <div class="image-container">
+          <img [src]="post.photoUrl"/>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+ 
+<div class="details" *ngIf="currentList == 'details'">
+  <ion-list>
+    <ion-item no-padding *ngFor="let post of posts">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2>
+            <img [src]="post.owner.photoUrl" />
+          </ion-col>
+          <ion-col col-10>
+            <ion-title>{{ post.owner.name }}</ion-title>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <img [src]="post.photoUrl" />
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <p [innerHTML]="writeDescriptionWithHashtags(post.description)"></p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</div>

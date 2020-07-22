@@ -34,15 +34,20 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
+  primary:    #8F91A2,
+  secondary:  #303633,
+  danger:     #CE7B91,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  purple:     #7692FF
 );
+
+$tabs-background: #494A49;
 
 
 // App iOS Variables
+
+$tabs-ios-tab-icon-color: #f4f4f4;
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
@@ -50,6 +55,8 @@ $colors: (
 
 
 // App Material Design Variables
+
+$tabs-md-tab-icon-color: #f4f4f4;
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
@@ -57,6 +64,8 @@ $colors: (
 
 
 // App Windows Variables
+
+$tabs-wp-tab-icon-color: #f4f4f4;
 // --------------------------------------------------
 // Windows only Sass variables can go here
 

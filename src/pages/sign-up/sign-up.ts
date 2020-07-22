@@ -1,25 +1,23 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SignUpPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { IonicPage, NavController } from 'ionic-angular';
+import { NgForm } from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
+ 
 @IonicPage()
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html',
 })
 export class SignUpPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ 
+  constructor(private auth: AuthProvider, private navCtrl: NavController) { }
+ 
+  onSignUp(form: NgForm) {
+    this.auth.signUp(form.value);
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignUpPage');
+ 
+  backToLoginPage(){
+    this.navCtrl.pop();
   }
-
+ 
 }
