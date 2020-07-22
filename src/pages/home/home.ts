@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { PostProvider } from '../../providers/post/post';
+import { Post } from '../../models/post';
  
 @IonicPage()
 @Component({
@@ -9,14 +10,14 @@ import { PostProvider } from '../../providers/post/post';
 })
 export class HomePage {
  
-  public posts = [];
+  public posts: Post[] = [];
  
   constructor(private postProvider: PostProvider) {}
  
   ionViewWillEnter(){
     const homePosts = this.postProvider.homePosts();
     homePosts.then(response => {
-      this.posts = response;
+      this.posts = <Post[]>response;
     })
-  }  
+  } 
 }

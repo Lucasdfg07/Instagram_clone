@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthProvider } from '../auth/auth';
 import { API_URL } from '../../constants';
+import { Post } from '../../models/post';
+import { PostFormatter } from './post_formatter';
  
 @Injectable()
 export class PostProvider {
@@ -15,44 +17,12 @@ export class PostProvider {
  
  
   private formatPost(data){
-    let posts: { id: number, photo_url: string, description: string, user: {}, hashtags: any[] }[] = [];
-    for(let post of data.data) {
-      const post_to_include = this.preparePostObject(post, data);
-      posts.push(post_to_include);
+    let posts: Post[] = [];
+    for(let post of data.data.reverse()) {
+      const postFormatter = new PostFormatter(post, data.included);
+      posts.push(postFormatter.call());
     }
     return posts;
   }
  
- 
-  private preparePostObject(post, data) {
-    post.attributes["user"] = this.includeUser(post.relationships.user.data, data.included);
-    post.attributes["hashtags"] = this.includeHashtags(post.relationships.hashtags.data, data.included);
-    return post.attributes;
-  }
- 
- 
-  private includeUser(user_data: any, included_data: any) {
-    return included_data.filter(included => {
-      return included.type == "user" && included.id == user_data.id
-    }).map(user => {
-      return user.attributes;
-    });
-  }
- 
- 
-  private includeHashtags(post_hashtags: any, included_data: any) {
-    let hashtags_ids = post_hashtags.map(hashtags => { return hashtags.id });
-    return included_data.filter(included => {
-      return included.type == "hashtag" && this.isThereHashtagId(hashtags_ids, included.id)
-    }).map(hashtag => {
-      return hashtag.attributes;
-    });
-  }
- 
- 
-  private isThereHashtagId(hashtags, id) {
-    return hashtags.some(hashtag_id => { 
-      return hashtag_id == id 
-    });
-  }
 }
