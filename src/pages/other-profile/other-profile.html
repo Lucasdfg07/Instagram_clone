@@ -4,6 +4,6 @@
  
  
 <ion-content>
-  <profile [user]="user"></profile>
+  <profile [user]="user" [isFollowing]="isFollowing" (onFollow)="follow()" (onUnfollow)="unfollow()"></profile>
   <post-list [posts]="posts" showToolbar="show" currentList="group"></post-list>
 </ion-content>
