@@ -1,4 +1,4 @@
-<div class="buttons" *ngIf="true">
+<div class="buttons" *ngIf="showToolbar">
   <ion-grid no-padding>
     <ion-row>
       <ion-col>
@@ -18,7 +18,7 @@
 <div class="only-images" *ngIf="currentList == 'group'">
   <ion-grid no-padding>
     <ion-row>
-      <ion-col col-6 align-self-center *ngFor="let post of posts">
+      <ion-col col-4 align-self-center *ngFor="let post of posts">
         <div class="image-container">
           <img [src]="post.photoUrl"/>
         </div>
@@ -31,7 +31,7 @@
   <ion-list>
     <ion-item no-padding *ngFor="let post of posts">
       <ion-grid>
-        <ion-row>
+        <ion-row (tap)="detailUser(post.owner)">
           <ion-col col-2>
             <img [src]="post.owner.photoUrl" />
           </ion-col>
