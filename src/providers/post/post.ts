@@ -24,5 +24,10 @@ export class PostProvider {
     }
     return posts;
   }
+
+  async userPosts(userId) {
+    const response: any = await this.http.get(`${API_URL}/api/v1/users/${userId}/posts`, { headers: this.auth.authHeader() }).toPromise();
+    return this.formatPost(response);
+  }
  
 }
