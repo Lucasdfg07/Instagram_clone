@@ -12,19 +12,23 @@
       <img [src]="user ? user.photoUrl : ''" />
     </ion-col>
  
-    <ion-col col-3>
+    <ion-col col-3 (click)="openFollowPage()">
       <h6 ion-text text-center>Followers</h6>
       <h6 text-center>{{ user?.followersCount }}</h6>
     </ion-col>
  
-    <ion-col col-4>
+    <ion-col col-4 (click)="openFollowPage()">
       <h6 text-center>Followings</h6>
       <h6 text-center>{{ user?.followingsCount }}</h6>
     </ion-col>
  
-    <ion-col col-2>
+    <ion-col col-2 *ngIf="isMe">
       <h6 text-center>Posts</h6>
       <h6 text-center>{{ user?.postsCount }}</h6>
+    </ion-col>
+ 
+    <ion-col col-2 align-self-center *ngIf="!isMe">
+      <following [isFollowing]="isFollowing" (followEvent)="checkFollow($event)"></following>
     </ion-col>
  
     <ion-col col-12>

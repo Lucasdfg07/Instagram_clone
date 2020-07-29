@@ -3,14 +3,17 @@ import { IonicModule } from 'ionic-angular';
 import { HeaderComponent } from './header/header';
 import { PostListComponent } from './post-list/post-list';
 import { ProfileComponent } from './profile/profile';
+import { FollowingComponent } from './following/following';
  
 @NgModule({
 	declarations: [HeaderComponent,
     PostListComponent,
-    ProfileComponent],
+    ProfileComponent,
+    FollowingComponent],
 	imports: [IonicModule],
 	exports: [HeaderComponent,
     PostListComponent,
-    ProfileComponent]
+    ProfileComponent,
+    FollowingComponent]
 })
 export class ComponentsModule {}
