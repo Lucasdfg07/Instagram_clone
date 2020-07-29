@@ -8,7 +8,7 @@ import { IonicPage } from 'ionic-angular';
 })
 export class TabsPage {
   home: string = "HomePage";
-  profile: string = "ProfilePage";
+  profile: string = "MyProfile";
   post: string = "NewPostPage";
   search: string = "SearchPage";
   logout: string = "SignOutPage";
