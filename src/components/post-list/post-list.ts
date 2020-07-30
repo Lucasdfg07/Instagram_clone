@@ -15,8 +15,8 @@ export class PostListComponent {
   @Input() currentList = "details";
   @Input() showToolbar = false;
  
-  constructor(private nav: NavController,
-              private postProvider: PostProvider,
+  constructor(private nav: NavController, 
+              private postProvider: PostProvider,  
               private auth: AuthProvider,
               private alert: AlertController){}
  
@@ -51,4 +51,24 @@ export class PostListComponent {
   isPostOwner(post): boolean {
     return post.owner.id == this.auth.currentUser.id;
   }
+ 
+  remove(post) {
+    this.alert.create({
+      title: "Remove Post",
+      message: "You're about to remove your post. Do you want to proceed?",
+      buttons: [
+        { text: 'No', role: 'cancel' },
+        { text: 'Yes', handler: () => { this.confirmExclusion(post) } }
+      ]
+    }).present();
+  }
+ 
+  confirmExclusion(post) {
+    this.postProvider.remove(post).then(() => {
+      let postIndex = this.posts.indexOf(post);
+      this.posts.splice(postIndex, 1);
+      this.alert.create({ title: "Removed", message: "Post successfully removed" }).present();
+    }, () => {});
+  }
+ 
 }

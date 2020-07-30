@@ -10,7 +10,8 @@ export class UserProvider {
   constructor(private http: HttpClient, private auth: AuthProvider) { }
  
   async load(userId) {
-    const response: any = await this.http.get(`${API_URL}/api/v1/users/${userId}`, { headers: this.auth.authHeader() }).toPromise();
+    const response: any = await this.http.get(`${API_URL}/api/v1/users/${userId}`, { headers: this.auth.authHeader() })
+                                    .toPromise();
     return this.formatResponse(response);
   }
  
@@ -29,7 +30,8 @@ export class UserProvider {
  
  
   async loadFollows(user: User) {
-    const response: any = await this.http.get(`${API_URL}/api/v1/users/${user.id}/followings`, { headers: this.auth.authHeader() }).toPromise();
+    const response: any = await this.http.get(`${API_URL}/api/v1/users/${user.id}/followings`, { headers: this.auth.authHeader() })
+                                    .toPromise();
     return { 
       followers: this.formatUsersList(response.followers),
       followings: this.formatUsersList(response.followings) 
@@ -57,4 +59,5 @@ export class UserProvider {
                     { followers: attr.followers_count, followings: attr.followings_count,
                       isFollowing: attr.is_following, posts: attr.posts_count });
   }
+ 
 }

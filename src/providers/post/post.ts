@@ -37,13 +37,19 @@ export class PostProvider {
   }
 
   async like(post) {
-    const response: any = await this.http.post(`${API_URL}/api/v1/posts/${post.id}/likes`, {}, { headers: this.auth.authHeader })
+    const response: any = await this.http.post(`${API_URL}/api/v1/posts/${post.id}/likes`, {}, { headers: this.auth.authHeader() })
                                     .toPromise();
     return response;
   }
   
   async unlike(post) {
-    const response: any = await this.http.delete(`${API_URL}/api/v1/posts/${post.id}/unlikes`, { headers: this.auth.authHeader })
+    const response: any = await this.http.delete(`${API_URL}/api/v1/posts/${post.id}/unlikes`, { headers: this.auth.authHeader() })
+      .toPromise();
+    return response;
+  }
+
+  async remove(post) {
+    const response: any = await this.http.delete(`${API_URL}/api/v1/posts/${post.id}`, { headers: this.auth.authHeader() })
       .toPromise();
     return response;
   }
