@@ -6,16 +6,20 @@
 <ion-content padding>
   <profile [user]="user" isMe="true"></profile>
  
-  <form>
+  <form #f="ngForm" (ngSubmit)="createPost(f)">
     <ion-grid>
       <ion-row>
         <ion-col col-12>
-          <button class="attach-file" (click)="takePicture()">
+          <button class="attach-file" *ngIf="!postPhoto" (click)="takePicture()">
             <ion-icon name="camera"></ion-icon>
           </button>
         </ion-col>
  
-        <ion-col col-12>
+        <ion-col col-12 *ngIf="postPhoto">
+          <img [src]="postPhoto" />
+        </ion-col>
+ 
+        <ion-col col-12 *ngIf="postPhoto">
           <button class="attach-file present" (click)="takePicture()">
             <ion-icon name="camera"></ion-icon>
           </button>
@@ -26,7 +30,7 @@
         <ion-col col-12>
           <ion-item>
             <ion-label floating>Description</ion-label>
-            <ion-textarea></ion-textarea>
+            <ion-textarea name="description" ngModel></ion-textarea>
           </ion-item>
         </ion-col>
       </ion-row>
