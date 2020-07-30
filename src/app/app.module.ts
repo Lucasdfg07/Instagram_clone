@@ -12,6 +12,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { PostProvider } from '../providers/post/post';
 import { UserProvider } from '../providers/user/user';
 import { OtherProfilePageModule } from '../pages/other-profile/other-profile.module';
+import { SearchProvider } from '../providers/search/search';
  
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { OtherProfilePageModule } from '../pages/other-profile/other-profile.mod
     Camera,
     AuthProvider,
     PostProvider,
-    UserProvider
+    UserProvider,
+    SearchProvider
   ]
 })
 export class AppModule { }
