@@ -1,3 +1,64 @@
 <ion-header>
   <shared-header pageTitle="Search"></shared-header>
 </ion-header>
+ 
+ 
+<ion-content>
+  <div class="search" >
+    <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+  </div>
+ 
+  <ion-segment [(ngModel)]="currentItem">
+    <ion-segment-button value="users">
+      <ion-icon name="people"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="hashtags">
+      <span class="hashtag-segment">#</span>
+    </ion-segment-button>
+  </ion-segment>
+ 
+ 
+  <div [ngSwitch]="currentItem">
+    <ion-list *ngSwitchCase="'users'">
+      <ion-item *ngFor="let user of users" (click)="goToUserPage(user)">
+        <ion-grid> 
+          <ion-row>
+            <ion-col col-4 align-self-center>
+              <div class="image-container">
+                <img [src]="user.photoUrl" />
+              </div>
+            </ion-col>
+            <ion-col col-8 align-self-center>
+              {{ user.name }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'hashtags'">
+      <ion-item no-padding *ngFor="let post of posts">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2>
+              <img [src]="post.owner.photoUrl" />
+            </ion-col>
+            <ion-col col-10>
+              <ion-title>{{ post.owner.name }}</ion-title>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12>
+              <img [src]="post.photoUrl" />
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12>
+              <p [innerHTML]="writeDescriptionWithHashtags(post.description)"></p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-header>
+  <shared-header [pageTitle]="user?.name"></shared-header>
+</ion-header>
+ 
+ 
+<ion-content>
+  <ion-segment [(ngModel)]="currentItem">
+    <ion-segment-button value="followers">
+      Followers ({{ followers.length }})
+    </ion-segment-button>
+    <ion-segment-button value="followings">
+      Followings ({{ followings.length }})
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <div [ngSwitch]="currentItem">
+    <ion-grid *ngSwitchCase="'followers'">
+      <ion-row>
+        <ion-col col-4 align-self-center *ngFor="let user of followers">
+          <div class="image-container">
+            <img [src]="user.photoUrl" (click)="goToUserPage(user)" />
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+ 
+    <ion-grid *ngSwitchCase="'followings'">
+      <ion-row>
+        <ion-col col-4 align-self-center *ngFor="let user of followings">
+          <div class="image-container">
+            <img [src]="user.photoUrl" (click)="goToUserPage(user)" />
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

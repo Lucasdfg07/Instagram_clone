@@ -1,3 +1,11 @@
 page-search {
-
-}
+    div.search {
+      ion-searchbar {
+        background: #222;
+      }
+    }
+   
+    span.hashtag-segment {
+      zoom: 2;
+    }
+  }
