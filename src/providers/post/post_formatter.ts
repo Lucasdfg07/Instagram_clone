@@ -14,7 +14,8 @@ export class PostFormatter {
     let post = this.post_data.attributes;
     post["owner"] = this.includeUser(this.post_data.relationships.user.data, this.included);
     post["hashtags"] = this.includeHashtags(this.post_data.relationships.hashtags.data, this.included);
-    return new Post(this.post_data.id, post.photo_url, post.description, post.owner, post.hashtags);
+    return new Post(this.post_data.id, post.photo_url, post.description, post.owner, post.hashtags, 
+                    { likeCount: post.like_count, isLiked: post.is_liked });
   }
  
  

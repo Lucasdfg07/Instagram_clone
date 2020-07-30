@@ -35,5 +35,17 @@ export class PostProvider {
     const response: any = await this.http.post(`${API_URL}/api/v1/posts`, { post: post}, { headers: this.auth.authHeader() }).toPromise();
     return response;
   }
+
+  async like(post) {
+    const response: any = await this.http.post(`${API_URL}/api/v1/posts/${post.id}/likes`, {}, { headers: this.auth.authHeader })
+                                    .toPromise();
+    return response;
+  }
+  
+  async unlike(post) {
+    const response: any = await this.http.delete(`${API_URL}/api/v1/posts/${post.id}/unlikes`, { headers: this.auth.authHeader })
+      .toPromise();
+    return response;
+  }
  
 }

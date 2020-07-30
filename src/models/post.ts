@@ -8,13 +8,17 @@ export class Post {
   private _description: string;
   private _owner: User;
   private _hashtags: Hashtag[];
+  public likeCount = 0;
+  public isLiked = false;
  
-  constructor(id: number, photoUrl: string, description: string, owner: User, hashtags: Hashtag[]){
+  constructor(id: number, photoUrl: string, description: string, owner: User, hashtags: Hashtag[], meta: any = {}){
     this._id = id;
     this._photoUrl = photoUrl;
     this._description = description;
     this._owner = owner;
     this._hashtags = hashtags;
+    if(meta.hasOwnProperty('likeCount')) this.likeCount = meta.likeCount;
+    if(meta.hasOwnProperty('isLiked')) this.isLiked = meta.isLiked;
   }
  
  
