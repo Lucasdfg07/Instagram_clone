@@ -1,6 +1,4 @@
-<div align="center">
-    <img src="https://github.com/Lucasdfg07/Instagram_clone/blob/master/src/assets/readme/logo-instagram.png" width="300px" /> 
-</div>
+<img src="https://github.com/Lucasdfg07/Instagram_clone/blob/master/src/assets/readme/logo-instagram.png" width="300px" /> 
 
 
 ## Instagram Clone
