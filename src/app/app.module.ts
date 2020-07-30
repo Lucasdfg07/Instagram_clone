@@ -5,11 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from "@ionic/storage";
+import { Camera } from '@ionic-native/camera';
  
 import { MyApp } from './app.component';
 import { AuthProvider } from '../providers/auth/auth';
 import { PostProvider } from '../providers/post/post';
 import { UserProvider } from '../providers/user/user';
+import { OtherProfilePageModule } from '../pages/other-profile/other-profile.module';
  
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { UserProvider } from '../providers/user/user';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    OtherProfilePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,10 +31,11 @@ import { UserProvider } from '../providers/user/user';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Camera,
     AuthProvider,
     PostProvider,
     UserProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

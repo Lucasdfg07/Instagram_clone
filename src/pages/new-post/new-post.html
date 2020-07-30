@@ -1,3 +1,41 @@
 <ion-header>
   <shared-header pageTitle="New Post"></shared-header>
 </ion-header>
+ 
+ 
+<ion-content padding>
+  <profile [user]="user" isMe="true"></profile>
+ 
+  <form>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <button class="attach-file" (click)="takePicture()">
+            <ion-icon name="camera"></ion-icon>
+          </button>
+        </ion-col>
+ 
+        <ion-col col-12>
+          <button class="attach-file present" (click)="takePicture()">
+            <ion-icon name="camera"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+ 
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label floating>Description</ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+ 
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button color="secondary" block>POST</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

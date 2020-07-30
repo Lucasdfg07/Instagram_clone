@@ -1,3 +1,22 @@
 page-new-post {
-
-}
+    button.attach-file {
+      width: 100%;
+      height: 10em;
+      background: transparent;
+      border: 3px #666 dashed;
+   
+      ion-icon {
+        zoom: 4.0;
+        color: #666;
+      }
+   
+      &.present {
+        height: 2em;
+   
+        ion-icon {
+          zoom: 1;
+        }
+      }
+   
+    }
+  }

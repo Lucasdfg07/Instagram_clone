@@ -1,25 +1,45 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the NewPostPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { IonicPage } from 'ionic-angular';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AuthProvider } from '../../providers/auth/auth';
+import { UserProvider } from '../../providers/user/user';
+import { User } from '../../models/user';
+import { Post } from '../../models/post';
+ 
 @IonicPage()
 @Component({
   selector: 'page-new-post',
   templateUrl: 'new-post.html',
 })
 export class NewPostPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+ 
+  public user: User;
+  public post: Post;
+  private cameraConfig: CameraOptions = {
+    quality: 100,
+    mediaType: this.camera.MediaType.PICTURE,
+    correctOrientation: true
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewPostPage');
+ 
+  constructor(private userProvider: UserProvider, 
+              private auth: AuthProvider, 
+              private camera: Camera) {
   }
-
+ 
+  ionViewWillEnter() {
+    this.loadUser();
+  }
+ 
+ 
+  takePicture() {
+    this.camera.getPicture(this.cameraConfig).then(uri => console.log(uri), () => {})
+  }
+ 
+  
+  private loadUser() {
+    this.userProvider.load(this.auth.currentUser.id)
+      .then((user: User) => {
+        this.user = user;
+      });
+  }
 }
