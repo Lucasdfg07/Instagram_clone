@@ -37,6 +37,7 @@ import { SearchProvider } from '../providers/search/search';
     AuthProvider,
     PostProvider,
     UserProvider,
+    SearchProvider,
     SearchProvider
   ]
 })
